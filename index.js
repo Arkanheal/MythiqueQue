@@ -14,45 +14,47 @@ bot.on('ready',()=> {
     
 });
 
-bot.on ('message', msg =>{
+bot.on ('message', message =>{
     //test que le bot est fonctionel
-    if(msg.content === '!mm'){
+    if(message.content === '!mm'){
         //const message_intro =
-        msg.channel.send('Join queue for MM dungeons')
+        message.channel.send('Join queue for MM dungeons')
             .then(function (message) {
                 console.log(message)
                 message.react(":shield:")
                 message.react(":crossed_swords:")
                 message.react(":helmet_with_cross:")
+            }).catch(function() {
+                console.log(message)
             });
     }
     //controle sur la file actuel
     if (dps.length >= 3 && tank.length >= 1 && heal.length >= 1){
-        /*msg.reply('le groupe est full a vos clavier : @'
+        /*message.reply('le groupe est full a vos clavier : @'
         +Dps[0].username+'#'+Dps[0].discriminator
         +' @'+Dps[1].username+'#'+Dps[1].discriminator
         +' @'+Dps[2].username+'#'+Dps[2].discriminator
         +' @'+Tank[0].username+'#'+Tank[0].discriminator
         +' @'+heal[0].username+'#'+heal[0].discriminator);*/
-        msg.channel.send(`le groupe est full à vos claviers : ${dps[0]}, ${dps[1]}, ${dps[2]} en tant que DPS , ${tank[0]} en TANK et ${heal[0]} en heal Bonne chance :D`);
+        message.channel.send(`le groupe est full à vos claviers : ${dps[0]}, ${dps[1]}, ${dps[2]} en tant que DPS , ${tank[0]} en TANK et ${heal[0]} en heal Bonne chance :D`);
         
         dps.splice(0,3);
         heal.splice(0,1);
         tank.splice(0,1);
     }
     //pour s'ajouter au file d'attente il faut envoyer un messgae +{role} 
-    if(msg.content === prefix + 'dps'){
+    if(message.content === prefix + 'dps'){
         
-        dps.push(msg.author)
-        msg.reply(dps.length + '/3 Dps '+tank.length+'/1 Tank '+heal.length+'/1 heal ');
+        dps.push(message.author)
+        message.reply(dps.length + '/3 Dps '+tank.length+'/1 Tank '+heal.length+'/1 heal ');
     }
-    if(msg.content === prefix + 'tank'){
-        tank.push(msg.author)
-        msg.reply(dps.length + '/3 Dps '+tank.length+'/1 Tank '+heal.length+'/1 heal ');
+    if(message.content === prefix + 'tank'){
+        tank.push(message.author)
+        message.reply(dps.length + '/3 Dps '+tank.length+'/1 Tank '+heal.length+'/1 heal ');
     }
-    if(msg.content === prefix + 'heal'){
-        heal.push(msg.author)
-        msg.reply(dps.length + '/3 Dps '+tank.length+'/1 Tank '+heal.length+'/1 heal ');
+    if(message.content === prefix + 'heal'){
+        heal.push(message.author)
+        message.reply(dps.length + '/3 Dps '+tank.length+'/1 Tank '+heal.length+'/1 heal ');
     }
 
 });
