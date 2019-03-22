@@ -17,11 +17,11 @@ bot.on ('message', msg =>{
         msg.reply('pong!');
     }
     //controle sur la file actuel
-    if (Dps.length == 3 && Tank.length == 1 && heal.length == 1){
+    if (Dps.length >= 3 && Tank.length >= 1 && heal.length >= 1){
         msg.reply('le groupe est full a vos clavier :'+Dps[0].user.username+Dps[1].user.username+Dps[2].user.username+Tank[0].user.username+heal[0].user.username);
-        Dps.slice(0,3);
-        heal.slice(0,1);
-        Tank.slice(0,1);
+        Dps.splice(0,3);
+        heal.splice(0,1);
+        Tank.splice(0,1);
     }
     //pour s'ajouter au file d'attente il faut envoyer un messgae +{role} 
     if(msg.content === prefix + 'dps'){
