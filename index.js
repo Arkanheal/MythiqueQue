@@ -19,9 +19,9 @@ bot.on ('message', msg =>{
     if(msg.content === '!mm'){
         const message_intro = msg.channel.send('Join queue for MM dungeons');
         console.log(message_intro);
-        message_intro.react('U+1F6E1');
+       /* message_intro.react('U+1F6E1');
         message_intro.react('U+26D1');
-        message_intro.react('U+2694');
+        message_intro.react('U+2694');*/
     }
     //controle sur la file actuel
     if (Dps.length >= 3 && Tank.length >= 1 && heal.length >= 1){
