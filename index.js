@@ -25,6 +25,7 @@ bot.on ('message', msg =>{
     }
     //pour s'ajouter au file d'attente il faut envoyer un messgae +{role} 
     if(msg.content === prefix + 'dps'){
+        console.log(msg.client);
         Dps.push(msg.client)
         msg.reply(Dps.length + '/3 Dps '+Tank.length+'/1 Tank '+heal.length+'/1 heal ');
     }
