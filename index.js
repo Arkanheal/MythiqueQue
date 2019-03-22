@@ -21,9 +21,9 @@ bot.on ('message', msg =>{
         msg.channel.send('Join queue for MM dungeons')
             .then(function (message) {
                 console.log(message_intro)
-                message_intro.react(":shield:")
-                message_intro.react(":crossed_swords:")
-                message_intro.react(":helmet_with_cross:")
+                message.react(":shield:")
+                message.react(":crossed_swords:")
+                message.react(":helmet_with_cross:")
             });
     }
     //controle sur la file actuel
