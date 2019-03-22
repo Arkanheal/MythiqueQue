@@ -17,11 +17,14 @@ bot.on('ready',()=> {
 bot.on ('message', msg =>{
     //test que le bot est fonctionel
     if(msg.content === '!mm'){
-        const message_intro = msg.channel.send('Join queue for MM dungeons');
-        console.log(message_intro);
-        message_intro.react(":shield:");
-        message_intro.react(":crossed_swords:");
-        message_intro.react(":helmet_with_cross:");
+        //const message_intro =
+        msg.channel.send('Join queue for MM dungeons')
+            .then(function (message) {
+                console.log(message_intro)
+                message_intro.react(":shield:")
+                message_intro.react(":crossed_swords:")
+                message_intro.react(":helmet_with_cross:")
+            });
     }
     //controle sur la file actuel
     if (dps.length >= 3 && tank.length >= 1 && heal.length >= 1){
