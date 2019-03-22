@@ -11,16 +11,16 @@ var heal=[];
 bot.on('ready',()=> {
     console.log(`logged in  as ${bot.user.username} !`);
     //chan_bot.send('Join queue for MM dungeons');
-    const message_intro = channel.send('Join queue for MM dungeons');
-    message_intro.react('U+1F6E1');
-    message_intro.react('U+26D1');
-    message_intro.react('U+2694');
+    
 });
 
 bot.on ('message', msg =>{
     //test que le bot est fonctionel
-    if(msg.content === 'ping'){
-        msg.reply('pong!');
+    if(msg.content === '!mm'){
+        const message_intro = msg.channel.send('Join queue for MM dungeons');
+        message_intro.react('U+1F6E1');
+        message_intro.react('U+26D1');
+        message_intro.react('U+2694');
     }
     //controle sur la file actuel
     if (Dps.length >= 3 && Tank.length >= 1 && heal.length >= 1){
