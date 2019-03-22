@@ -2,15 +2,12 @@ const discord = require('discord.js');
 const bot = new discord.Client();
 
 const prefix =('+');
-const chan_bot = bot.channels.find('name', 'mythicqueue')
+const chan_bot = bot.channels.find('name', 'mythicqueue');
 
 //TODO add a filter to not take in account reaction from same user
-const filter = (reaction) => reaction.emoji.name === 'U+1F6E1'
-const filter_dps = (reaction) = reaction.emoji.name === 'U+26D1'		
-const filter_heal = (reaction) = reaction.emoji.name === 'U+2694'	
-const collector_tank = message.createReactionCollector(filter);
-const collector_dps = message.createReactionCollector(filter_dps);
-const collector_heal = message.createReactionCollector(filter_heal);
+const filter = (reaction) => reaction.emoji.name === 'U+1F6E1';
+const filter_dps = (reaction) = reaction.emoji.name === 'U+26D1';		
+const filter_heal = (reaction) = reaction.emoji.name === 'U+2694';	
 
 var dps=[];
 var tank=[];
@@ -18,8 +15,15 @@ var heal=[];
 
 bot.on('ready',()=> {
     console.log(`logged in  as ${bot.user.username} !`);
-    message_intro = channel.send('Join queue for MM dungeons')
+    const message_intro = channel.send('Join queue for MM dungeons');
+    message_intro.react('U+1F6E1');
+    message_intro.react('U+26D1');
+    message_intro.react('U+2694');
 });
+
+const collector_tank = message_intro.createReactionCollector(filter);
+const collector_dps = message_intro.createReactionCollector(filter_dps);
+const collector_heal = message_intro.createReactionCollector(filter_heal);
 
 bot.on ('message', msg =>{
     //test que le bot est fonctionel
