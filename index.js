@@ -4,10 +4,6 @@ const bot = new discord.Client();
 const prefix =('+');
 const chan_bot = bot.channels.find('name', 'mythicqueue');
 
-const tank_emoji = bot.emojis.find(emoji => emoji.name === "shield");
-const dps_emoji = bot.emojis.find(emoji => emoji.name === "crossed_swords");
-const heal_emoji = bot.emojis.find(emoji => emoji.name === "helmet_with_cross");
-
 var dps=[];
 var tank=[];
 var heal=[];
@@ -26,9 +22,9 @@ bot.on ('message', message =>{
         message.channel.send('Join queue for MM dungeons')
             .then(function (message) {
                 console.log(message)
-                message.react("${tank_emoji}")
-                message.react("${heal_emoji}")
-                message.react("${dps_emoji}")
+                message.react("🛡")
+                message.react("⚔")
+                message.react("⛑")
             }).catch(console.error);
     }
     //controle sur la file actuel
@@ -63,39 +59,39 @@ bot.on ('message', message =>{
 });
 
 
-bot.on('messageReactionAdd', (reaction, user) => {
-    var u_name = user.username;
-    var is_dps = dps.indexOf(u_name);
-    var is_tank = tank.indexOf(u_name);
-    var is_heal = heal.indexOf(u_name);
-    if (is_tank != -1){
-        if (reaction.emoji.name === ':shield:'){
-            if (is_dps != -1){
-                dps.splice(is_dps, 1);
-            } else if (is_heal != -1){
-                heal.splice(is_heal, 1);
-            }
-            tank.push(u_name);
-        }
-    } else if (is_dps != -1){
-        if (reaction.emoji.name === ':crossed_swords:'){
-            if (is_tank != -1){
-                tank.splice(is_dps, 1);
-            } else if (is_heal != -1){
-                heal.splice(is_heal, 1);
-            }
-            dps.push(u_name);
-        }
-    } else if (is_heal != -1){
-        if (reaction.emoji.name === ':helmet_with_cross:'){
-            if (is_tank != -1){
-                tank.splice(is_dps, 1);
-            } else if (is_dps != -1){
-                dps.splice(is_heal, 1);
-            }
-            heal.push(u_name);
-        }
-    }
-});
+//bot.on('messageReactionAdd', (reaction, user) => {
+    //var u_name = user.username;
+    //var is_dps = dps.indexOf(u_name);
+    //var is_tank = tank.indexOf(u_name);
+    //var is_heal = heal.indexOf(u_name);
+    //if (is_tank != -1){
+        //if (reaction.emoji.name === ':shield:'){
+            //if (is_dps != -1){
+                //dps.splice(is_dps, 1);
+            //} else if (is_heal != -1){
+                //heal.splice(is_heal, 1);
+            //}
+            //tank.push(u_name);
+        //}
+    //} else if (is_dps != -1){
+        //if (reaction.emoji.name === ':crossed_swords:'){
+            //if (is_tank != -1){
+                //tank.splice(is_dps, 1);
+            //} else if (is_heal != -1){
+                //heal.splice(is_heal, 1);
+            //}
+            //dps.push(u_name);
+        //}
+    //} else if (is_heal != -1){
+        //if (reaction.emoji.name === ':helmet_with_cross:'){
+            //if (is_tank != -1){
+                //tank.splice(is_dps, 1);
+            //} else if (is_dps != -1){
+                //dps.splice(is_heal, 1);
+            //}
+            //heal.push(u_name);
+        //}
+    //}
+//});
 
 bot.login('NTU4Njc4NjkwNDE0NzIzMTIy.D3an3Q.RTpLKXqADIH-18d8yS2sRpOmD4Q');
