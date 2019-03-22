@@ -18,7 +18,7 @@ bot.on ('message', msg =>{
     }
     //controle sur la file actuel
     if (Dps.length >= 3 && Tank.length >= 1 && heal.length >= 1){
-        msg.reply('le groupe est full a vos clavier :'+Dps[0].user.username+Dps[1].user.username+Dps[2].user.username+Tank[0].user.username+heal[0].user.username);
+        msg.reply('le groupe est full a vos clavier : @'+Dps[0].username+' @'+Dps[1].username+' @'+Dps[2].username+' @'+Tank[0].username+' @'+heal[0].username);
         Dps.splice(0,3);
         heal.splice(0,1);
         Tank.splice(0,1);
@@ -30,11 +30,11 @@ bot.on ('message', msg =>{
         msg.reply(Dps.length + '/3 Dps '+Tank.length+'/1 Tank '+heal.length+'/1 heal ');
     }
     if(msg.content === prefix + 'tank'){
-        Tank.push(msg.client)
+        Tank.push(msg.author)
         msg.reply(Dps.length + '/3 Dps '+Tank.length+'/1 Tank '+heal.length+'/1 heal ');
     }
     if(msg.content === prefix + 'heal'){
-        heal.push(msg.client)
+        heal.push(msg.author)
         msg.reply(Dps.length + '/3 Dps '+Tank.length+'/1 Tank '+heal.length+'/1 heal ');
     }
 })
