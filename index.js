@@ -2,7 +2,6 @@ const discord = require('discord.js');
 const bot = new discord.Client();
 
 const prefix =('+');
-const chan_bot = bot.channels.find(val => val.name, 'mythicqueue');
 
 var dps=[];
 var tank=[];
@@ -10,8 +9,9 @@ var heal=[];
 
 bot.on('ready',()=> {
     console.log(`logged in  as ${bot.user.username} !`);
+    const chan_bot = bot.channels.find(val => val.name, 'mythicqueue');
     console.log(chan_bot);
-    //chan_bot.send('Join queue for MM dungeons');
+    chan_bot.send('Join queue for MM dungeons auto');
     
 });
 
