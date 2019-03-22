@@ -4,12 +4,17 @@ const bot = new discord.Client();
 const prefix =('+');
 const chan_bot = bot.channels.find('name', 'mythicqueue');
 
+const tank_emoji = bot.emojis.find(emoji => emoji.name === "shield");
+const dps_emoji = bot.emojis.find(emoji => emoji.name === "crossed_swords");
+const heal_emoji = bot.emojis.find(emoji => emoji.name === "helmet_with_cross");
+
 var dps=[];
 var tank=[];
 var heal=[];
 
 bot.on('ready',()=> {
     console.log(`logged in  as ${bot.user.username} !`);
+    console.log(chan_bot);
     //chan_bot.send('Join queue for MM dungeons');
     
 });
@@ -20,13 +25,11 @@ bot.on ('message', message =>{
         //const message_intro =
         message.channel.send('Join queue for MM dungeons')
             .then(function (message) {
-                console.log('${message}')
-                message.react("🛡️")
-                message.react("⚔️")
-                message.react("⛑️")
-            }).catch(function() {
-                console.log('${message}')
-            });
+                console.log(message)
+                message.react("${tank_emoji}")
+                message.react("${heal_emoji}")
+                message.react("${dps_emoji}")
+            }).catch(console.error);
     }
     //controle sur la file actuel
     if (dps.length >= 3 && tank.length >= 1 && heal.length >= 1){
