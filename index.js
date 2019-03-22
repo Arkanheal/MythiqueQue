@@ -13,11 +13,12 @@ const collector_dps = message.createReactionCollector(filter_dps);
 const collector_heal = message.createReactionCollector(filter_heal);
 
 var dps=[];
-var hank=[];
+var tank=[];
 var heal=[];
 
 bot.on('ready',()=> {
     console.log(`logged in  as ${bot.user.username} !`);
+    message_intro = channel.send('Join queue for MM dungeons')
 });
 
 bot.on ('message', msg =>{
