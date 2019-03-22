@@ -2,7 +2,7 @@ const discord = require('discord.js');
 const bot = new discord.Client();
 
 const prefix =('+');
-const chan_bot = bot.channels.find('name', 'mythicqueue');
+const chan_bot = bot.channels.find(val => val.name, 'mythicqueue');
 
 var dps=[];
 var tank=[];
