@@ -20,7 +20,7 @@ bot.on ('message', msg =>{
         //const message_intro =
         msg.channel.send('Join queue for MM dungeons')
             .then(function (message) {
-                console.log(message_intro)
+                console.log(message)
                 message.react(":shield:")
                 message.react(":crossed_swords:")
                 message.react(":helmet_with_cross:")
