@@ -2,6 +2,7 @@ const discord = require('discord.js');
 const bot = new discord.Client();
 
 const prefix =('+');
+const chan_bot = bot.channels.find('name', 'mythicqueue');
 
 var Dps=[];
 var Tank=[];
@@ -9,6 +10,11 @@ var heal=[];
 
 bot.on('ready',()=> {
     console.log(`logged in  as ${bot.user.username} !`);
+    chan_bot.send('Join queue for MM dungeons');
+    const message_intro = channel.send('Join queue for MM dungeons');
+    message_intro.react('U+1F6E1');
+    message_intro.react('U+26D1');
+    message_intro.react('U+2694');
 });
 
 bot.on ('message', msg =>{
@@ -44,5 +50,43 @@ bot.on ('message', msg =>{
         heal.push(msg.author)
         msg.reply(Dps.length + '/3 Dps '+Tank.length+'/1 Tank '+heal.length+'/1 heal ');
     }
-})
+
+});
+
+
+bot.on('messageReactionAdd', (reaction, user) => {
+    var u_name = user.username;
+    var is_dps = dps.indexOf(u_name);
+    var is_tank = tank.indexOf(u_name);
+    var is_heal = heal.indexOf(u_name);
+    if (is_tank != -1){
+        if (reaction.emoji.name === ':shield:'){
+            if (is_dps != -1){
+                dps.splice(is_dps, 1);
+            } else if (is_heal != -1){
+                heal.splice(is_heal, 1);
+            }
+            tank.push(u_name);
+        }
+    } else if (is_dps != -1){
+        if (reaction.emoji.name === ':crossed_swords:'){
+            if (is_tank != -1){
+                tank.splice(is_dps, 1);
+            } else if (is_heal != -1){
+                heal.splice(is_heal, 1);
+            }
+            dps.push(u_name);
+        }
+    } else if (is_heal != -1){
+        if (reaction.emoji.name === ':helmet_with_cross:'){
+            if (is_tank != -1){
+                tank.splice(is_dps, 1);
+            } else if (is_dps != -1){
+                dps.splice(is_heal, 1);
+            }
+            heal.push(u_name);
+        }
+    }
+});
+
 bot.login('NTU4Njc4NjkwNDE0NzIzMTIy.D3an3Q.RTpLKXqADIH-18d8yS2sRpOmD4Q');
