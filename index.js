@@ -21,9 +21,9 @@ bot.on ('message', message =>{
         message.channel.send('Join queue for MM dungeons')
             .then(function (message) {
                 console.log(message)
-                message.react("U+1F600")
-                message.react("U+1F604")
-                message.react("U+1F605")
+                message.react(":shield:")
+                message.react(":crossed_swords:")
+                message.react(":helmet_with_cross:")
             }).catch(function() {
                 console.log(message)
             });
