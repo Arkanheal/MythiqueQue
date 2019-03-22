@@ -10,7 +10,7 @@ var heal=[];
 
 bot.on('ready',()=> {
     console.log(`logged in  as ${bot.user.username} !`);
-    chan_bot.send('Join queue for MM dungeons');
+    //chan_bot.send('Join queue for MM dungeons');
     const message_intro = channel.send('Join queue for MM dungeons');
     message_intro.react('U+1F6E1');
     message_intro.react('U+26D1');
