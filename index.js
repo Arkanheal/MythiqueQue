@@ -31,7 +31,7 @@ bot.on ('message', msg =>{
         +' @'+Dps[2].username+'#'+Dps[2].discriminator
         +' @'+Tank[0].username+'#'+Tank[0].discriminator
         +' @'+heal[0].username+'#'+heal[0].discriminator);*/
-        msg.channel.send(`le groupe est full a vos clavier : ${dps[0]}, ${dps[1]}, ${dps[2]} en tant que DPS , ${tank[0]} en TANK et ${heal[0]} en heal Bonne chance :D`);
+        msg.channel.send(`le groupe est full à vos claviers : ${dps[0]}, ${dps[1]}, ${dps[2]} en tant que DPS , ${tank[0]} en TANK et ${heal[0]} en heal Bonne chance :D`);
         
         dps.splice(0,3);
         heal.splice(0,1);
