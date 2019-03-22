@@ -18,14 +18,21 @@ bot.on ('message', msg =>{
     }
     //controle sur la file actuel
     if (Dps.length >= 3 && Tank.length >= 1 && heal.length >= 1){
-        msg.reply('le groupe est full a vos clavier : @'+Dps[0].username+' @'+Dps[1].username+' @'+Dps[2].username+' @'+Tank[0].username+' @'+heal[0].username);
+        /*msg.reply('le groupe est full a vos clavier : @'
+        +Dps[0].username+'#'+Dps[0].discriminator
+        +' @'+Dps[1].username+'#'+Dps[1].discriminator
+        +' @'+Dps[2].username+'#'+Dps[2].discriminator
+        +' @'+Tank[0].username+'#'+Tank[0].discriminator
+        +' @'+heal[0].username+'#'+heal[0].discriminator);*/
+        msg.channel.send(`le groupe est full a vos clavier : ${Dps[0]}, ${Dps[1]}, ${Dps[2]} en tant que DPS , ${Tank[0]} en TANK et ${heal[0]} en heal Bonne chance :D`);
+        
         Dps.splice(0,3);
         heal.splice(0,1);
         Tank.splice(0,1);
     }
     //pour s'ajouter au file d'attente il faut envoyer un messgae +{role} 
     if(msg.content === prefix + 'dps'){
-        console.log(msg.author);
+        
         Dps.push(msg.author)
         msg.reply(Dps.length + '/3 Dps '+Tank.length+'/1 Tank '+heal.length+'/1 heal ');
     }
