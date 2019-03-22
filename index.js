@@ -4,11 +4,6 @@ const bot = new discord.Client();
 const prefix =('+');
 const chan_bot = bot.channels.find('name', 'mythicqueue');
 
-//TODO add a filter to not take in account reaction from same user
-const filter = (reaction) => reaction.emoji.name === 'U+1F6E1';
-const filter_dps = (reaction) = reaction.emoji.name === 'U+26D1';		
-const filter_heal = (reaction) = reaction.emoji.name === 'U+2694';	
-
 var dps=[];
 var tank=[];
 var heal=[];
@@ -20,10 +15,6 @@ bot.on('ready',()=> {
     message_intro.react('U+26D1');
     message_intro.react('U+2694');
 });
-
-const collector_tank = message_intro.createReactionCollector(filter);
-const collector_dps = message_intro.createReactionCollector(filter_dps);
-const collector_heal = message_intro.createReactionCollector(filter_heal);
 
 bot.on ('message', msg =>{
     //test que le bot est fonctionel
@@ -59,4 +50,39 @@ bot.on ('message', msg =>{
         msg.reply(dps.length + '/3 dps '+tank.length+'/1 tank '+heal.length+'/1 heal ');
     }
 })
+
+bot.on('messageReactionAdd', (reaction, user) => {
+    var u_name = user.username;
+    var is_dps = dps.indexOf(u_name);
+    var is_tank = tank.indexOf(u_name);
+    var is_heal = heal.indexOf(u_name);
+    if (is_tank != -1){
+        if (reaction.emoji.name === ':shield:'){
+            if (is_dps != -1){
+                dps.slice(is_dps, 1);
+            } else if (is_heal != -1){
+                heal.slice(is_heal, 1);
+            }
+            tank.push(u_name);
+        }
+    } else if (is_dps != -1){
+        if (reaction.emoji.name === ':crossed_swords:'){
+            if (is_tank != -1){
+                tank.slice(is_dps, 1);
+            } else if (is_heal != -1){
+                heal.slice(is_heal, 1);
+            }
+            dps.push(u_name);
+        }
+    } else if (is_heal != -1){
+        if (reaction.emoji.name === ':helmet_with_cross:'){
+            if (is_tank != -1){
+                tank.slice(is_dps, 1);
+            } else if (is_dps != -1){
+                dps.slice(is_heal, 1);
+            }
+            heal.push(u_name);
+        }
+    }
+}
 bot.login('NTU4Njc4NjkwNDE0NzIzMTIy.D3an3Q.RTpLKXqADIH-18d8yS2sRpOmD4Q');
