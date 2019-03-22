@@ -37,4 +37,4 @@ bot.on ('message', msg =>{
         msg.reply(Dps.length + '/3 Dps '+Tank.length+'/1 Tank '+heal.length+'/1 heal ');
     }
 })
-bot.login('NTU4Njc4NjkwNDE0NzIzMTIy.D3an3Q.RTpLKXqADIH-18d8yS2sRpOmD4Q');
+bot.login(process.env.TOKEN);
