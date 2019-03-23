@@ -2,7 +2,8 @@ const discord = require('discord.js');
 const bot = new discord.Client();
 
 const prefix =('+');
-
+const serverName = 'ahla wa sahla';
+const channelName = 'mythicqueue';
 const emoji_tank = "🛡";
 const emoji_heal = "⛑";
 const emoji_dps = "⚔";
@@ -15,8 +16,8 @@ bot.on('ready', async ()=> {
     console.log(process.env.TOKEN);
     console.log(`logged in  as ${bot.user.username} !`);
     //TODO make it dynamic?
-    const discord_guild = bot.guilds.find(val => val.name === 'ahla wa sahla');
-    const chan_bot = discord_guild.channels.find(val => val.name === 'mythicqueue');
+    const discord_guild = bot.guilds.find(val => val.name === serverName);
+    const chan_bot = discord_guild.channels.find(val => val.name === channelName);
     chan_bot.send('Join queue for MM dungeons auto')
         .then(async function (message) {
             try{
@@ -83,8 +84,8 @@ bot.on('messageReactionAdd', (reaction, user) => {
     }
 });
  //pour voir la file actuel
-bot.on('message',msg=>{
-    if (msg === prefix+'file') {
+bot.on('message', msg => {
+    if (msg.content === prefix+'file') {
         msg.reply('Dps: '+dps+' Tank: '+tank+' Heal : '+heal);
     }
 })
