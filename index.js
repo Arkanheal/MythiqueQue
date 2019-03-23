@@ -15,8 +15,8 @@ bot.on('ready', async ()=> {
     console.log(process.env.TOKEN);
     console.log(`logged in  as ${bot.user.username} !`);
     //TODO make it dynamic?
-    const discord_guild = bot.guilds.find(val => val.name === 'BetterWype #Sa');
-    const chan_bot = discord_guild.channels.find(val => val.name === 'mythic-queue');
+    const discord_guild = bot.guilds.find(val => val.name === 'ahla w sahla');
+    const chan_bot = discord_guild.channels.find(val => val.name === 'mythicqueue');
     chan_bot.send('Join queue for MM dungeons auto')
         .then(async function (message) {
             try{
