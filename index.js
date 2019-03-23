@@ -12,6 +12,7 @@ var tank=[];
 var heal=[];
 
 bot.on('ready', async ()=> {
+    console.log(process.env.TOKEN);
     console.log(`logged in  as ${bot.user.username} !`);
     //TODO make it dynamic?
     const discord_guild = bot.guilds.find(val => val.name === 'BetterWype #Sa');
@@ -81,4 +82,11 @@ bot.on('messageReactionAdd', (reaction, user) => {
         }
     }
 });
+ //pour voir la file actuel
+bot.on('message',msg=>{
+    if (msg === prefix+'file') {
+        msg.reply('Dps: '+dps+' Tank: '+tank+' Heal : '+heal);
+    }
+})
 
+bot.login(process.env.TOKEN);
