@@ -9,8 +9,10 @@ var heal=[];
 
 bot.on('ready',()=> {
     console.log(`logged in  as ${bot.user.username} !`);
-    const chan_bot = bot.channels.find(val => val.name, 'mythicqueue');
-    console.log(chan_bot);
+    const discord_guild = bot.guilds.find(val => val.name === 'ahla wa sahla');
+    console.log(discord_guild);
+    const chan_bot = discord_guild.channels.find(val => val.name === 'mythicqueue');
+    console.error(chan_bot);
     chan_bot.send('Join queue for MM dungeons auto');
     
 });
