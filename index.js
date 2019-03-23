@@ -12,14 +12,12 @@ bot.on('ready',()=> {
     //TODO make it dynamic?
     const discord_guild = bot.guilds.find(val => val.name === 'ahla wa sahla');
     const chan_bot = discord_guild.channels.find(val => val.name === 'mythicqueue');
-    var message_auto = chan_bot.send('Join queue for MM dungeons auto')
+    var message_intro = chan_bot.send('Join queue for MM dungeons auto')
         .then(function (message) {
             message.react("🛡")
-            message.react("⚔")
-            message.react("⛑")
+                .then(() => message.react("⛑"))
+                .then(() => message.react("⚔"))
         }).catch(console.error);
-    var message_auto_id = message_auto.id;
-    console.log(message_auto_id);
 });
 
 bot.on ('message', message =>{
