@@ -9,15 +9,17 @@ var heal=[];
 
 bot.on('ready',()=> {
     console.log(`logged in  as ${bot.user.username} !`);
+    //TODO make it dynamic?
     const discord_guild = bot.guilds.find(val => val.name === 'ahla wa sahla');
     const chan_bot = discord_guild.channels.find(val => val.name === 'mythicqueue');
-    chan_bot.send('Join queue for MM dungeons auto')
+    var message_auto = chan_bot.send('Join queue for MM dungeons auto')
         .then(function (message) {
             message.react("🛡")
             message.react("⚔")
             message.react("⛑")
         }).catch(console.error);
-    
+    var message_auto_id = message_auto.id;
+    console.log(message_auto_id);
 });
 
 bot.on ('message', message =>{
@@ -64,48 +66,50 @@ bot.on ('message', message =>{
 });
 
 
-bot.on('messageReactionAdd', (reaction, user) => {
-    var u_name = user.username;
-    var is_dps = dps.indexOf(u_name);
-    var is_tank = tank.indexOf(u_name);
-    var is_heal = heal.indexOf(u_name);
-    if (is_tank != -1){
-        if (reaction.emoji.name === ':shield:'){
-            if (is_dps != -1){
-                dps.splice(is_dps, 1);
-            } else if (is_heal != -1){
-                heal.splice(is_heal, 1);
-            }
-            tank.push(u_name);
-            console.log(heal.length);
-            console.log(tank.length);
-            console.log(dps.length);
-        }
-    } else if (is_dps != -1){
-        if (reaction.emoji.name === ':crossed_swords:'){
-            if (is_tank != -1){
-                tank.splice(is_dps, 1);
-            } else if (is_heal != -1){
-                heal.splice(is_heal, 1);
-            }
-            dps.push(u_name);
-            console.log(heal.length);
-            console.log(tank.length);
-            console.log(dps.length);
-        }
-    } else if (is_heal != -1){
-        if (reaction.emoji.name === ':helmet_with_cross:'){
-            if (is_tank != -1){
-                tank.splice(is_dps, 1);
-            } else if (is_dps != -1){
-                dps.splice(is_heal, 1);
-            }
-            heal.push(u_name);
-            console.log(heal.length);
-            console.log(tank.length);
-            console.log(dps.length);
-        }
-    }
-});
+/*
+ *bot.on('messageReactionAdd', (reaction, user) => {
+ *    var u_name = user.username;
+ *    var is_dps = dps.indexOf(u_name);
+ *    var is_tank = tank.indexOf(u_name);
+ *    var is_heal = heal.indexOf(u_name);
+ *    if (is_tank != -1){
+ *        if (reaction.emoji.name === ':shield:'){
+ *            if (is_dps != -1){
+ *                dps.splice(is_dps, 1);
+ *            } else if (is_heal != -1){
+ *                heal.splice(is_heal, 1);
+ *            }
+ *            tank.push(u_name);
+ *            console.log(heal.length);
+ *            console.log(tank.length);
+ *            console.log(dps.length);
+ *        }
+ *    } else if (is_dps != -1){
+ *        if (reaction.emoji.name === ':crossed_swords:'){
+ *            if (is_tank != -1){
+ *                tank.splice(is_dps, 1);
+ *            } else if (is_heal != -1){
+ *                heal.splice(is_heal, 1);
+ *            }
+ *            dps.push(u_name);
+ *            console.log(heal.length);
+ *            console.log(tank.length);
+ *            console.log(dps.length);
+ *        }
+ *    } else if (is_heal != -1){
+ *        if (reaction.emoji.name === ':helmet_with_cross:'){
+ *            if (is_tank != -1){
+ *                tank.splice(is_dps, 1);
+ *            } else if (is_dps != -1){
+ *                dps.splice(is_heal, 1);
+ *            }
+ *            heal.push(u_name);
+ *            console.log(heal.length);
+ *            console.log(tank.length);
+ *            console.log(dps.length);
+ *        }
+ *    }
+ *});
+ */
 
 bot.login('NTU4Njc4NjkwNDE0NzIzMTIy.D3an3Q.RTpLKXqADIH-18d8yS2sRpOmD4Q');
