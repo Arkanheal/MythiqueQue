@@ -13,7 +13,13 @@ bot.on('ready',()=> {
     console.log(discord_guild);
     const chan_bot = discord_guild.channels.find(val => val.name === 'mythicqueue');
     console.error(chan_bot);
-    chan_bot.send('Join queue for MM dungeons auto');
+    chan_bot.send('Join queue for MM dungeons auto')
+        .then(function (message) {
+            console.log(message)
+            message.react("🛡")
+            message.react("⚔")
+            message.react("⛑")
+        }).catch(console.error);
     
 });
 
