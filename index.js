@@ -85,9 +85,12 @@ bot.on('messageReactionAdd', (reaction, user) => {
 });
  //pour voir la file actuel
 bot.on('message', msg => {
-    if (msg.content === prefix+'file') {
+    if (msg.content == 'ping'){
+        msg.reply('pong');
+    }
+    if (msg.content == 'file') {
         msg.reply('Dps: '+dps+' Tank: '+tank+' Heal : '+heal);
     }
-})
+});
 
 bot.login(process.env.TOKEN);
