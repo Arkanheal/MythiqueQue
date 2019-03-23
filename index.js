@@ -10,12 +10,9 @@ var heal=[];
 bot.on('ready',()=> {
     console.log(`logged in  as ${bot.user.username} !`);
     const discord_guild = bot.guilds.find(val => val.name === 'ahla wa sahla');
-    console.log(discord_guild);
     const chan_bot = discord_guild.channels.find(val => val.name === 'mythicqueue');
-    console.error(chan_bot);
     chan_bot.send('Join queue for MM dungeons auto')
         .then(function (message) {
-            console.log(message)
             message.react("🛡")
             message.react("⚔")
             message.react("⛑")
@@ -80,6 +77,9 @@ bot.on('messageReactionAdd', (reaction, user) => {
                 heal.splice(is_heal, 1);
             }
             tank.push(u_name);
+            console.log(heal.length);
+            console.log(tank.length);
+            console.log(dps.length);
         }
     } else if (is_dps != -1){
         if (reaction.emoji.name === ':crossed_swords:'){
@@ -89,6 +89,9 @@ bot.on('messageReactionAdd', (reaction, user) => {
                 heal.splice(is_heal, 1);
             }
             dps.push(u_name);
+            console.log(heal.length);
+            console.log(tank.length);
+            console.log(dps.length);
         }
     } else if (is_heal != -1){
         if (reaction.emoji.name === ':helmet_with_cross:'){
@@ -98,6 +101,9 @@ bot.on('messageReactionAdd', (reaction, user) => {
                 dps.splice(is_heal, 1);
             }
             heal.push(u_name);
+            console.log(heal.length);
+            console.log(tank.length);
+            console.log(dps.length);
         }
     }
 });
