@@ -111,8 +111,8 @@ bot.on('message', msg => {
     if (msg.content == 'ping'){
         msg.reply('pong');
     }
-    if (msg.content == 'file') {
-        msg.reply('Dps: '+dps+' Tank: '+tank+' Heal : '+heal);
+    if (msg.content == prefix+'file') {
+        msg.author.send('Dps: '+dps+' Tank: '+tank+' Heal : '+heal);
     }
 });
 
