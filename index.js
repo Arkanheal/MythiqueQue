@@ -2,7 +2,7 @@ const discord = require('discord.js');
 const bot = new discord.Client();
 
 const prefix =('+');
-const serverName = 'BetterWype #Sa';
+const serverName = 'Better Wype';
 const channelName ='mythic-queue';
 var chan_annonce;
 const emoji_tank = "🛡"
