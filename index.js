@@ -151,4 +151,4 @@ bot.on('message', msg => {
     }
 });
 
-bot.login("");
+bot.login(process.env.TOKEN);
