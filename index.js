@@ -46,7 +46,7 @@ bot.on('messageReactionAdd', (reaction, user) => {
                 if (value.emoji.name != emoji_tank){
                     user_array = value.users;
                     user_array.forEach(function (user_react, index, array){
-                        if(user_react.username === u_name){
+                        if(user_react === u_name){
                             value.remove(user_react)
                         }
                     });
@@ -67,7 +67,7 @@ bot.on('messageReactionAdd', (reaction, user) => {
                 if (value.emoji.name != emoji_heal){
                     user_array = value.users;
                     user_array.forEach(function (user_react, index, array){
-                        if(user_react.username === u_name){
+                        if(user_react === u_name){
                             value.remove(user_react);
                         }
                     });
@@ -88,7 +88,7 @@ bot.on('messageReactionAdd', (reaction, user) => {
                 if (value.emoji.name != emoji_dps){
                     user_array = value.users;
                     user_array.forEach(function (user_react, index, array){
-                        if(user_react.username === u_name){
+                        if(user_react === u_name){
                             value.remove(user_react);
                         }
                     });
@@ -119,7 +119,7 @@ bot.on('messageReactionAdd', (reaction, user) => {
         }}});
 
 bot.on('messageReactionRemove', (reaction, user) => {
-    var u_name = user.username;
+    var u_name = user;
     var is_dps = dps.indexOf(u_name);
     var is_tank = tank.indexOf(u_name);
     var is_heal = heal.indexOf(u_name);
