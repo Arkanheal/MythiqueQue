@@ -5,9 +5,13 @@ const prefix =('+');
 const serverName = 'Better Wype';
 const channelName ='mythic-queue';
 var chan_annonce;
-const emoji_tank = "🛡"
-;const emoji_heal ="⛑";
+const emoji_tank = "🛡";
+const emoji_heal ="⛑";
 const emoji_dps = "⚔";
+
+
+const discord_guild = bot.guilds.find(val => val.name === serverName);
+const chan_bot = discord_guild.channels.find(val => val.name === channelName);
 
 var dps=[];
 var tank=[];
@@ -16,8 +20,9 @@ var heal=[];
 bot.on('ready', async ()=> {
     console.log(`logged in  as ${bot.user.username} !`);
     //TODO make it dynamic?
-    const discord_guild = bot.guilds.find(val => val.name === serverName);
-    const chan_bot = discord_guild.channels.find(val => val.name === channelName);
+});
+
+bot.on('guildCreate', async()=> {
     chan_annonce = discord_guild.channels.find(val => val.name === 'mythic-annonce');
     chan_bot.send('Join queue for MM dungeons')
         .then(async function (message) {
