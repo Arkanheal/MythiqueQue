@@ -10,8 +10,6 @@ const emoji_heal ="⛑";
 const emoji_dps = "⚔";
 
 
-const discord_guild = bot.guilds.find(val => val.name === serverName);
-const chan_bot = discord_guild.channels.find(val => val.name === channelName);
 
 var dps=[];
 var tank=[];
@@ -23,6 +21,8 @@ bot.on('ready', async ()=> {
 });
 
 bot.on('guildCreate', async()=> {
+    discord_guild = bot.guilds.find(val => val.name === serverName);
+    chan_bot = discord_guild.channels.find(val => val.name === channelName);
     chan_annonce = discord_guild.channels.find(val => val.name === 'mythic-annonce');
     chan_bot.send('Join queue for MM dungeons')
         .then(async function (message) {
