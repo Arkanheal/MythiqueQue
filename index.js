@@ -20,10 +20,9 @@ bot.on('ready', async ()=> {
     //TODO make it dynamic?
 });
 
-bot.on('guildCreate', async()=> {
-    discord_guild = bot.guilds.find(val => val.name === serverName);
-    chan_bot = discord_guild.channels.find(val => val.name === channelName);
-    chan_annonce = discord_guild.channels.find(val => val.name === 'mythic-annonce');
+bot.on('guildCreate', async (guild)=> {
+    chan_bot = guild.channels.find(val => val.name === channelName);
+    chan_annonce = guild.channels.find(val => val.name === 'mythic-annonce');
     chan_bot.send('Join queue for MM dungeons')
         .then(async function (message) {
             try{
