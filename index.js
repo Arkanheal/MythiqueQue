@@ -16,22 +16,25 @@ var heal=[];
 bot.on('ready', async ()=> {
     console.log(`logged in  as ${bot.user.username} !`);
     //TODO make it dynamic?
-    const discord_guild = bot.guilds.find(val => val.name === serverName);
-    const chan_bot = discord_guild.channels.find(val => val.name === channelName);
+    discord_guild = bot.guilds.find(val => val.name === serverName);
+    chan_bot = discord_guild.channels.find(val => val.name === channelName);
     chan_annonce = discord_guild.channels.find(val => val.name === 'mythic-annonce');
-    chan_bot.send('Join queue for MM dungeons')
-        .then(async function (message) {
-            try{
-                await message.react(emoji_tank);
-                await message.react(emoji_heal);
-                await message.react(emoji_dps);
-            }
-            catch (error)
-            {
-                console.error('One emoji failed to react');
-                console.error(error);
-            }
-        }).catch(console.error);
+    collector = new discord.MessageCollector(chan_bot);
+    if (collector.received === 0){
+        chan_bot.send('Join queue for MM dungeons')
+            .then(async function (message) {
+                try{
+                    await message.react(emoji_tank);
+                    await message.react(emoji_heal);
+                    await message.react(emoji_dps);
+                }
+                catch (error)
+                {
+                    console.error('One emoji failed to react');
+                    console.error(error);
+                }
+            }).catch(console.error);
+    }
 });
 
 bot.on('messageReactionAdd', (reaction, user) => {
