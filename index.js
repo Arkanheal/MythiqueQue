@@ -19,7 +19,7 @@ bot.on('ready', async ()=> {
     discord_guild = bot.guilds.find(val => val.name === serverName);
     chan_bot = discord_guild.channels.find(val => val.name === channelName);
     chan_annonce = discord_guild.channels.find(val => val.name === 'mythic-annonce');
-    collector = new discord.MessageCollector(chan_bot, time=6, max=2);
+    collector = new discord.MessageCollector(chan_bot,m => m.author.id);
     if (collector.received === 0){
         chan_bot.send('Join queue for MM dungeons')
             .then(async function (message) {
@@ -146,9 +146,6 @@ bot.on('messageReactionRemove', (reaction, user) => {
 });
 //pour voir la file actuel
 bot.on('message', msg => {
-    if (msg.content == 'ping'){
-        msg.reply('pong');
-    }
     if (msg.content == prefix+'file'){
         msg.author.send('Dps: '+dps.join('|')+'  // Tank: '+tank.join('|')+'  // Heal : '+heal.join('|'));
     }
