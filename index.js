@@ -20,22 +20,25 @@ bot.on('ready', async ()=> {
     //TODO make it dynamic?
 });
 
-bot.on('guildCreate', async (guild)=> {
-    chan_bot = guild.channels.find(val => val.name === channelName);
-    chan_annonce = guild.channels.find(val => val.name === 'mythic-annonce');
-    chan_bot.send('Join queue for MM dungeons')
-        .then(async function (message) {
-            try{
-                await message.react(emoji_tank);
-                await message.react(emoji_heal);
-                await message.react(emoji_dps);
-            }
-            catch (error)
-            {
-                console.error('One emoji failed to react');
-                console.error(error);
-            }
-        }).catch(console.error);
+bot.on('channelPinsUpdate', async (channel, time) => {
+    if (channel.name === 'mythic-annonce'){
+        console.log(channel.name)
+        chan_bot = guild.channels.find(val => val.name === channelName);
+        chan_annonce = guild.channels.find(val => val.name === 'mythic-annonce');
+        chan_bot.send('Join queue for MM dungeons')
+            .then(async function (message) {
+                try{
+                    await message.react(emoji_tank);
+                    await message.react(emoji_heal);
+                    await message.react(emoji_dps);
+                }
+                catch (error)
+                {
+                    console.error('One emoji failed to react');
+                    console.error(error);
+                }
+            }).catch(console.error);
+    }
 });
 
 bot.on('messageReactionAdd', (reaction, user) => {
