@@ -19,7 +19,7 @@ bot.on('ready', async ()=> {
     discord_guild = bot.guilds.find(val => val.name === serverName);
     chan_bot = discord_guild.channels.find(val => val.name === channelName);
     chan_annonce = discord_guild.channels.find(val => val.name === 'mythic-annonce');
-    collector = new discord.MessageCollector(chan_bot,m => m.author.id);
+    collector = new discord.MessageCollector(chan_bot,m => m.author = bot);
     if (collector.received === 0){
         chan_bot.send('Join queue for MM dungeons')
             .then(async function (message) {
